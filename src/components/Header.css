@@ -1,0 +1,16 @@
+.headerMain {
+    background-color: rgb(222, 222, 222);
+    background-image: url('../pictures/bookstore-banner.jpg');
+    background-size: cover;
+    background-blend-mode: darken;
+}
+
+p {
+    text-shadow:
+    0.5px 0.5px 4px #d7d5d5aa,
+    -0.5px 0.5px 4px #d7d5d5aa,
+    -0.5px -0.5px 4px #d7d5d5aa,
+    0.5px -0.5px 4px #d7d5d5aa;
+    margin: 2em;
+    padding: 0.3em;
+}
