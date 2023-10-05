@@ -9,6 +9,8 @@ function BookIndex({ filterText, filterType }) {
   const [listRender, setListRender] = lr;
 
   useEffect(() => {
+    console.log("Get all körs");
+    console.log(listRender);
     Axios.get("https://localhost:7121/books").then((res) => {
       setBooks(res.data.result);
     });

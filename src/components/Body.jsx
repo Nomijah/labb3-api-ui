@@ -26,6 +26,10 @@ function Body() {
     setShowForm(data);
   };
 
+  const listRenderer = () => {
+    setListRender(!listRender);
+  };
+
   return (
     <Context.Provider
       value={{
@@ -44,7 +48,12 @@ function Body() {
           {viewState.view === "delete" && <DeleteBook id={viewState.id} />}
         </div>
         <AddBookButton addBookHandler={addBookHandler} />
-        {showForm && <AddBook addBookHandler={addBookHandler} />}
+        {showForm && (
+          <AddBook
+            addBookHandler={addBookHandler}
+            listRenderer={listRenderer}
+          />
+        )}
       </div>
     </Context.Provider>
   );

@@ -6,7 +6,8 @@ import BookDelete from "../APIconnections/BookDelete";
 
 function DeleteBook({ id }) {
   const [bookToDelete, setBookToDelete] = useState({});
-  const [viewState, setViewState] = useContext(Context);
+  const { vs } = useContext(Context);
+  const [viewState, setViewState] = vs;
   const [loading, setLoading] = useState(true);
 
   // Fetch book details

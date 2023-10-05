@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BookPost from "../APIconnections/BookPost";
 
-function AddBook({ addBookHandler }) {
+function AddBook({ addBookHandler, listRenderer }) {
   const [formData, setFormData] = useState({
     title: "",
     author: "",
@@ -26,7 +26,7 @@ function AddBook({ addBookHandler }) {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     addBookHandler(false);
@@ -40,7 +40,12 @@ function AddBook({ addBookHandler }) {
       isAvailable: formData.isAvailable,
     };
 
-    BookPost(bookToCreate);
+    try {
+      await BookPost(bookToCreate);
+      listRenderer();
+    } catch (error) {
+      console.error("Error posting book:", error);
+    }
   };
 
   return (

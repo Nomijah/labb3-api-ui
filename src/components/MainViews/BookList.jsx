@@ -4,6 +4,7 @@ import EditButton from "../Buttons/EditButton";
 import DeleteButton from "../Buttons/DeleteButton";
 
 function BookList({ books, filterType, filterText }) {
+  // Filter books if filter is used
   const bookFilter = (data) => {
     if (filterType === "title") {
       return data.filter((b) =>
