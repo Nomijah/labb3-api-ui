@@ -10,17 +10,17 @@ function DeleteBook({ id }) {
   const [viewState, setViewState] = vs;
   const [loading, setLoading] = useState(true);
 
-  // Fetch book details
-  const afterComplete = (resData) => {
-    setBookToDelete(resData.result);
-    setLoading(false);
-  };
   useEffect(() => {
-    singleBookGet(id, afterComplete);
+    const fetchData = async (bookId) => {
+      const bookData = await singleBookGet(bookId);
+      setBookToDelete(bookData.data.result);
+      setLoading(false);
+    };
+    fetchData(id);
   }, []);
 
-  const deleteHandler = (bookId) => {
-    BookDelete(bookId);
+  const deleteHandler = async (bookId) => {
+    await BookDelete(bookId);
     setViewState({ view: "list", id: 0 });
   };
 
@@ -30,15 +30,17 @@ function DeleteBook({ id }) {
         <Loading />
       ) : (
         <div>
-          {Object.entries(bookToDelete).map((item, key) => {
-            if (typeof item[1] != "boolean") {
-              return (
-                <p key={key} className="ml-2">
-                  {item[0]} : {item[1]}
-                </p>
-              );
-            }
-          })}
+          <ul className="list-group">
+            {Object.entries(bookToDelete).map((item, key) => {
+              if (typeof item[1] != "boolean") {
+                return (
+                  <li key={key} className="list-group-item ps-5 pt-2">
+                    <strong>{item[0]} :</strong> {item[1]}
+                  </li>
+                );
+              }
+            })}
+          </ul>
           <p className="h5">Are you sure you want to delete this book?</p>
         </div>
       )}

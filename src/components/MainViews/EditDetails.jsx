@@ -6,18 +6,17 @@ import BookPut from "../APIconnections/BookPut";
 
 function EditDetails({ id }) {
   const [bookToUpdate, setBookToUpdate] = useState({});
-  const { vs, lr } = useContext(Context);
+  const { vs } = useContext(Context);
   const [viewState, setViewState] = vs;
-  const [listRender, setListRender] = lr;
   const [loading, setLoading] = useState(true);
 
-  // Fetch book details
-  const afterComplete = (resData) => {
-    setBookToUpdate(resData.result);
-    setLoading(false);
-  };
   useEffect(() => {
-    singleBookGet(id, afterComplete);
+    const fetchData = async (bookId) => {
+      const bookData = await singleBookGet(bookId);
+      setBookToUpdate(bookData.data.result);
+      setLoading(false);
+    };
+    fetchData(id);
   }, []);
 
   const [formData, setFormData] = useState({
@@ -53,7 +52,7 @@ function EditDetails({ id }) {
     setFormData({ ...formData, isAvailable: !formData.isAvailable });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const updatedBook = {
       id: formData.id,
@@ -65,9 +64,8 @@ function EditDetails({ id }) {
       isAvailable: formData.isAvailable,
     };
 
-    BookPut(updatedBook);
+    await BookPut(updatedBook);
 
-    // setListRender(!listRender);
     setViewState({ view: "list", id: 0 });
   };
 
