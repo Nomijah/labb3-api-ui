@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../Body";
-import Axios from "axios";
 import singleBookGet from "../APIconnections/SingleBookGet";
 import Loading from "../Messages/Loading";
+import BookDelete from "../APIconnections/BookDelete";
 
 function DeleteBook({ id }) {
   const [bookToDelete, setBookToDelete] = useState({});
@@ -19,19 +19,7 @@ function DeleteBook({ id }) {
   }, []);
 
   const deleteHandler = (bookId) => {
-    Axios.delete(`https://localhost:7121/books/${bookId}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          alert("Book deleted successfully.");
-        }
-      })
-      .catch((err) => console.log(err));
-
+    BookDelete(bookId);
     setViewState({ view: "list", id: 0 });
   };
 

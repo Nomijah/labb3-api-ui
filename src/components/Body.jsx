@@ -27,7 +27,12 @@ function Body() {
   };
 
   return (
-    <Context.Provider value={[viewState, setViewState]}>
+    <Context.Provider
+      value={{
+        vs: [viewState, setViewState],
+        lr: [listRender, setListRender],
+      }}
+    >
       <div className="mainContainer">
         <Search filterHandler={filterHandler} />
         <div className="card p-1">

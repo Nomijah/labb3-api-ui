@@ -7,7 +7,7 @@ const BookPost = (bookToCreate) => {
         },
       })
         .then((res) => {
-          console.log(res);
+        //   console.log(res);
           if (res.status === 200) {
             alert("Book added to library");
           }

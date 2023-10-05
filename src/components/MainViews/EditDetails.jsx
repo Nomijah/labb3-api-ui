@@ -7,6 +7,7 @@ import BookPut from "../APIconnections/BookPut";
 function EditDetails({ id }) {
   const [bookToUpdate, setBookToUpdate] = useState({});
   const [viewState, setViewState] = useContext(Context);
+  const [listRender, setListRender] = useContext(Context);
   const [loading, setLoading] = useState(true);
 
   // Fetch book details
@@ -65,6 +66,8 @@ function EditDetails({ id }) {
 
     BookPut(updatedBook);
 
+    setListRender(!listRender);
+    console.log(listRender);
     setViewState({ view: "list", id: 0 });
   };
 

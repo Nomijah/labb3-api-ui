@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { Context } from "../Body";
 
 function EditButton({ id }) {
-  const [viewState, setViewState] = useContext(Context);
+  const { vs } = useContext(Context);
+  const [viewState, setViewState] = vs;
 
   return (
     <button

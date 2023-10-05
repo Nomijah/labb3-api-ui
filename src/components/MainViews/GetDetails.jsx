@@ -5,7 +5,8 @@ import Loading from "../Messages/Loading";
 
 function GetDetails({ id }) {
   const [book, setBook] = useState({});
-  const [viewState, setViewState] = useContext(Context);
+  const { vs } = useContext(Context);
+  const [viewState, setViewState] = vs;
   const [loading, setLoading] = useState(true);
 
   // Fetch book details

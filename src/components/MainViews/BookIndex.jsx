@@ -5,7 +5,8 @@ import { Context } from "../Body";
 
 function BookIndex({ filterText, filterType }) {
   const [books, setBooks] = useState([{}]);
-  const [listRender, setListRender] = useState(true);
+  const { lr } = useContext(Context);
+  const [listRender, setListRender] = lr;
 
   useEffect(() => {
     Axios.get("https://localhost:7121/books").then((res) => {

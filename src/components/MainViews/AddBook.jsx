@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Axios from "axios";
+import BookPost from "../APIconnections/BookPost";
 
 function AddBook({ addBookHandler }) {
   const [formData, setFormData] = useState({
@@ -16,7 +16,6 @@ function AddBook({ addBookHandler }) {
       ...formData,
       [target.name]: target.value,
     });
-    console.log(formData.year);
   };
 
   const handleCheckBox = () => {
@@ -30,7 +29,7 @@ function AddBook({ addBookHandler }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // addBookHandler(false);
+    addBookHandler(false);
 
     const bookToCreate = {
       title: formData.title,
@@ -40,11 +39,13 @@ function AddBook({ addBookHandler }) {
       description: formData.description,
       isAvailable: formData.isAvailable,
     };
+
+    BookPost(bookToCreate);
   };
 
   return (
     <div>
-      <form className="w-50 px-5">
+      <form onSubmit={handleSubmit} className="w-50 px-5">
         <h3 className="mt-3">Add new book</h3>
         <div className="mt-2">
           <label htmlFor="title" className="h5 form-label">
@@ -123,16 +124,13 @@ function AddBook({ addBookHandler }) {
             />
           </label>
         </div>
-        <button
-          onSubmit={() => handleSubmit}
-          className="btn btn-success btn-lg mt-2"
-        >
+        <button type="submit" className="btn btn-success mt-2">
           Submit
         </button>
         <button
           type="button"
           onClick={() => addBookHandler(false)}
-          className="btn btn-warning btn-lg mt-2 ms-2"
+          className="btn btn-warning mt-2 ms-2"
         >
           Cancel
         </button>
