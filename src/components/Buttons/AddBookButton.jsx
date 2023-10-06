@@ -1,9 +1,9 @@
 import React from "react";
 
-function AddBookButton({ addBookHandler }) {
+function AddBookButton({ addBookHandle }) {
   return (
     <button
-      onClick={() => addBookHandler(true)}
+      onClick={() => addBookHandle(true)}
       id="addBook"
       className="btn btn-success mt-3"
       type="button"

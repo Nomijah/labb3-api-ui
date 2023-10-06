@@ -3,14 +3,12 @@ import Axios from "axios";
 import BookList from "./BookList";
 import { Context } from "../Body";
 
-function BookIndex({ filterText, filterType }) {
+function BookIndex({ filter }) {
   const [books, setBooks] = useState([{}]);
   const { lr } = useContext(Context);
   const [listRender, setListRender] = lr;
 
   useEffect(() => {
-    console.log("Get all körs");
-    console.log(listRender);
     Axios.get("https://localhost:7121/books").then((res) => {
       setBooks(res.data.result);
     });
@@ -30,11 +28,7 @@ function BookIndex({ filterText, filterType }) {
         </tr>
       </thead>
       <tbody>
-        <BookList
-          books={books}
-          filterText={filterText}
-          filterType={filterType}
-        />
+        <BookList books={books} filter={filter} />
       </tbody>
     </table>
   );

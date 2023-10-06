@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BookPost from "../APIconnections/BookPost";
 
-function AddBook({ addBookHandler, listRenderer }) {
+function AddBook({ addBookHandle, listRenderer }) {
   const [formData, setFormData] = useState({
     title: "",
     author: "",
@@ -29,7 +29,7 @@ function AddBook({ addBookHandler, listRenderer }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    addBookHandler(false);
+    addBookHandle(false);
 
     const bookToCreate = {
       title: formData.title,

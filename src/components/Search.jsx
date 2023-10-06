@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Search({ filterHandler }) {
+function Search({ filterHandle }) {
   const [input, setInput] = useState("");
 
   const handleChange = ({ target }) => {
@@ -30,7 +30,7 @@ function Search({ filterHandler }) {
               id="titleSearch"
               className="btn btn-success"
               type="button"
-              onClick={() => filterHandler({ text: input, type: "title" })}
+              onClick={() => filterHandle({ text: input, type: "title" })}
             >
               Filter by Title
             </button>
@@ -38,7 +38,7 @@ function Search({ filterHandler }) {
               id="authorSearch"
               className="btn btn-primary m-3 mt-0 mb-0"
               type="button"
-              onClick={() => filterHandler({ text: input, type: "author" })}
+              onClick={() => filterHandle({ text: input, type: "author" })}
             >
               Filter by Author
             </button>
@@ -47,7 +47,7 @@ function Search({ filterHandler }) {
               className="btn btn-secondary"
               type="button"
               onClick={() => {
-                filterHandler({ text: "", type: "" });
+                filterHandle({ text: "", type: "" });
                 clearInput();
                 document.getElementById("searchInput").value = "";
               }}
